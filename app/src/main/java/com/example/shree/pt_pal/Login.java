@@ -14,11 +14,15 @@ public class Login extends AppCompatActivity
     private EditText Password;
     private Button Login;
 
+    PTPalDB myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        myDB = new PTPalDB(this);
 
         Name = (EditText)findViewById(R.id.userUsername);
         Password = (EditText)findViewById(R.id.userPassword);
