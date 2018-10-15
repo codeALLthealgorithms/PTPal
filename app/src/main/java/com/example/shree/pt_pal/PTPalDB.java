@@ -1,4 +1,4 @@
-package com.example.a310245143.myapplication;
+package com.example.shree.pt_pal;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
