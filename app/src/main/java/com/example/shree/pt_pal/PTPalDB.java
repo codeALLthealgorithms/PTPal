@@ -9,7 +9,7 @@ import android.content.Context;
 
 public class PTPalDB extends SQLiteOpenHelper
 {
-    public static final String DATABASE_NAME = "PTPal.db";
+    public static final String DATABASE_NAME = "PTPalDB.db";
 
     public static final String TBL_PATIENT = "Patient";
     public static final String PATIENT_ID = "Patient_ID";
@@ -19,6 +19,7 @@ public class PTPalDB extends SQLiteOpenHelper
     public static final String PATIENT_PASSWORD = "Password";
     public static final String PATIENT_HEIGHT = "Height";
     public static final String PATIENT_GENDER = "Gender";
+    public static final String PATIENT_AGE = "Age";
     public static final String PATIENT_CREATED_DATE = "Created_Date";
 
     public static final String TBL_THERAPIST = "Therapist";
@@ -85,6 +86,7 @@ public class PTPalDB extends SQLiteOpenHelper
                 PATIENT_PASSWORD + " TEXT," +
                 PATIENT_HEIGHT + " INTEGER," +
                 PATIENT_GENDER + " TEXT, " +
+                PATIENT_AGE + " INTEGER," +
                 PATIENT_CREATED_DATE + " TEXT)");
 
         db.execSQL("create table " + TBL_THERAPIST + " (" +
@@ -94,7 +96,6 @@ public class PTPalDB extends SQLiteOpenHelper
                 THERAPIST_EMAIL + " TEXT UNIQUE," +
                 THERAPIST_PASSWORD + " TEXT," +
                 THERAPIST_CREATED_DATE + " ,TEXT)");
- 
 
         db.execSQL("create table " + TBL_TPL + " (" +
                 TPL_THERAPIST_ID + " INTEGER PRIMARY KEY," +
@@ -150,7 +151,7 @@ public class PTPalDB extends SQLiteOpenHelper
         onCreate(db);
     }
 
-    public boolean insertPatient(String FirstName, String LastName, String Email, String Password, String Gender, int height, String CreatedDate)
+    public boolean insertPatient(String FirstName, String LastName, String Email, String Password, String Gender, int height, int age, String CreatedDate)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -160,6 +161,7 @@ public class PTPalDB extends SQLiteOpenHelper
         values.put(PATIENT_GENDER, Gender);
         values.put(PATIENT_PASSWORD, Password);
         values.put(PATIENT_HEIGHT, height);
+        values.put(PATIENT_AGE, age);
         values.put(PATIENT_CREATED_DATE, CreatedDate);
         long result = db.insert(TBL_PATIENT, null, values);
         if(result == -1)
