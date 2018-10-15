@@ -14,12 +14,62 @@ import android.widget.Toast;
  * Created by Shree on 10/15/18.
  */
 
-public class Profile extends AppCompatActivity{
+public class Profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    protected void Profile(Bundle savedInstanceState) {
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
 
-        Toast.makeText(this, "This is profile", Toast.LENGTH_LONG).show();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_exercises);
+        mDrawerLayout=(DrawerLayout) findViewById(R.id.drawer);
+        mToggle=new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(mToggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if( id == R.id.profile)
+        {
+            //Toast.makeText(this, "This is profile", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Profile.this, Profile.class);
+            startActivity(intent);
+            return true;
+        }
+        if( id == R.id.therapy)
+        {
+            //Toast.makeText(this, "This is therapy", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Profile.this, Therapy.class);
+            startActivity(intent);
+            return true;
+        }
+        if( id == R.id.log)
+        {
+            Toast.makeText(this, "This is logout", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        return false;
+    }
 
 }
+

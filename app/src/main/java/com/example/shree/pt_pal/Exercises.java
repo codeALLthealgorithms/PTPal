@@ -49,16 +49,19 @@ public class Exercises extends AppCompatActivity implements NavigationView.OnNav
             //Toast.makeText(this, "This is profile", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(Exercises.this, Profile.class);
             startActivity(intent);
+            return true;
         }
         if( id == R.id.therapy)
         {
             //Toast.makeText(this, "This is therapy", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(Exercises.this, Therapy.class);
             startActivity(intent);
+            return true;
         }
         if( id == R.id.log)
         {
             Toast.makeText(this, "This is logout", Toast.LENGTH_LONG).show();
+            return true;
         }
 
         return false;
